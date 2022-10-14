@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useRef, useImperativeHandle, forwardRef } from 'react'
 import classes from './MapBoxes.module.css';
 import { useState } from 'react';
-import EnterWindow from '../../../Pages/EnterWindow';
-const MapBoxes = () => {
+
+const MapBoxes = (props, ref) => {
+
+    useImperativeHandle(ref, () => ({
+        upMove: () => { upMove() },
+        downMove: () => { downMove() },
+        rightMove: () => { rightMove() },
+        leftMove: () => { leftMove() }
+    }))
+
 
     const [posPlayerX, setPlayerX] = useState(1);
     const [posPlayerY, setPlayerY] = useState(2);
@@ -97,15 +105,10 @@ const MapBoxes = () => {
 
             </div>
             <div className={classes.box}><Player positX={1} positY={4} />O</div>
-            <div >
-                <button onClick={upMove} >up</button>
-                <button onClick={downMove} >down</button>
-                <button onClick={leftMove} >left</button>
-                <button onClick={rightMove} >right</button>
-            </div>
+
+
 
         </div>
     );
 };
-
-export default MapBoxes;
+export default forwardRef(MapBoxes)

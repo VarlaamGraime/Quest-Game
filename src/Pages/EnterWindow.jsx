@@ -2,9 +2,15 @@ import React from 'react';
 import Timer from './../Components/Timer';
 import ButtonPick from '../Components/UI/Button/ButtonPick';
 import MapBoxes from '../Components/UI/boxes/MapBoxes';
+import { useRef } from 'react';
+
 
 
 const EnterWindow = () => {
+
+    const childRef = useRef()
+
+
     return (
         <div>
             <div className='flexBox'>
@@ -21,14 +27,24 @@ const EnterWindow = () => {
             <div className='flexBox'>
 
                 <div className='choiceWindow'>
-                    <ButtonPick onClick={upMove} >Вверх по карте</ButtonPick>
-                    <ButtonPick onClick={downMove} >Вниз по карте</ButtonPick>
-                    <ButtonPick onClick={leftMove} >Влево по карте</ButtonPick>
-                    <ButtonPick onClick={rightMove}>Вправо по карте</ButtonPick>
+                    <button className='btnPick' onClick={() => {
+                        childRef.current.upMove()
+                    }} >Вверх по карте</button>
+                    <button className='btnPick' onClick={() => {
+                        childRef.current.downMove()
+                    }} >Вниз по карте</button>
+                    <button className='btnPick' onClick={() => {
+                        childRef.current.leftMove()
+                    }} >Влево по карте</button>
+                    <button className='btnPick' onClick={() => {
+                        childRef.current.rightMove()
+                    }} >Вправо по карте</button>
                 </div>
 
                 <div className='statusWindow'>
-                    <MapBoxes></MapBoxes>
+                    <MapBoxes ref={childRef}  ></MapBoxes>
+
+
                 </div>
 
             </div>

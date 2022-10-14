@@ -40,9 +40,9 @@ const Timer = () => {
                 <span className='timerText'>{seconds}</span>
             </div>
             <div>
-                <button onClick={handleStart}>start</button>
-                <button onClick={handleStop}>stop</button>
-                <button onClick={handleReset}>reset</button>
+                <button className='btnPick' onClick={handleStart}>start</button>
+                <button className='btnPick' onClick={handleStop}>stop</button>
+                <button className='btnPick' onClick={handleReset}>reset</button>
 
             </div>
         </div>
