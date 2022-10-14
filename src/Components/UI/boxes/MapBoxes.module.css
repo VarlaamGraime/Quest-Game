@@ -1,0 +1,45 @@
+.box {
+    display: inline-flex;
+
+    width: 3em;
+    height: 3em;
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 10em;
+    transform: translate(-50%, 00%);
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 1em;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.boxCell {
+    display: inline-flex;
+    width: 3em;
+    height: 3em;
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 1em;
+    transform: translate(-50%, 00%);
+    margin-top: 10px;
+    float: left;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 1em;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.boxCellEmp {
+    display: inline-flex;
+    width: 3em;
+    height: 3em;
+    border: 1px solid beige;
+    margin-left: 1em;
+    transform: translate(-50%, 00%);
+    margin-top: 10px;
+}
+
+.flexBoxMap {
+    margin-left: 25%;
+    margin-left: 5em;
+
+}

@@ -1,0 +1,72 @@
+* {
+    background-color: beige;
+    box-sizing: border-box;
+    font-size: 19px;
+    font-family: century schoolbook;
+    color: rgba(10, 23, 26, 0.795);
+    font-weight: bold;
+
+}
+
+
+.flexBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+
+
+.loginWindow {
+    border: 2px solid rgba(44, 104, 116, 0.795);
+    width: 40em;
+    height: 20em;
+    margin-left: 1%;
+    margin-top: 1%;
+    text-align: justify;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.pictureWindow {
+    border: 2px solid rgba(44, 104, 116, 0.795);
+    width: 27em;
+    height: 10em;
+    margin-left: 1%;
+    margin-top: 1%;
+    text-align: justify;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.choiceWindow {
+    border: 2px solid rgba(44, 104, 116, 0.795);
+    width: 40em;
+    height: 10em;
+    margin-left: 1%;
+    margin-top: 1%;
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.statusWindow {
+    border: 2px solid rgba(44, 104, 116, 0.795);
+    width: 27em;
+    height: 20em;
+    margin-left: 1%;
+    margin-top: -13%;
+    text-align: justify;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.timerText {
+    font-family: century schoolbook;
+    font-size: 30px;
+    color: rgba(7, 32, 36, 0.795);
+
+
+}
