@@ -1,14 +1,15 @@
 import React from 'react';
-import Timer from './../Components/Timer';
+import { Link, Routes, Route } from 'react-router-dom';
 import MapBoxes from '../Components/UI/boxes/MapBoxes';
 import { useRef } from 'react';
 
 
 
-const EnterWindow = () => {
 
+
+const StartWindow = (props) => {
+    const ref = React.createRef();
     const childRef = useRef()
-
 
     return (
         <div>
@@ -19,29 +20,29 @@ const EnterWindow = () => {
                 </div>
 
                 <div className='pictureWindow'>
-                    <Timer />
+                    Duis commodo lacus eu nisi aliquam elementum in a sapien. Nunc tincidunt varius lorem, eu lacinia lacus vulputate eget. Aenean eu ligula id est lobortis facilisis sed sit amet ante.
                 </div>
 
             </div>
             <div className='flexBox'>
 
                 <div className='choiceWindow'>
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.upMove()
-                    }} >Вверх по карте</button>
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.downMove()
-                    }} >Вниз по карте</button>
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.leftMove()
-                    }} >Влево по карте</button>
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.rightMove()
-                    }} >Вправо по карте</button>
+                    <Link to="/start" className='btnPick'
+                        onClick={() => { childRef.current.firstEnemyMove() }}
+                    >Начать</Link>
+
+
+                    <button className='btnPick'
+                        onClick={() => {
+                            childRef.current.firstEnemyMove()
+                        }}
+                    >  {props.children}Тест</button>
+
+
                 </div>
 
                 <div className='statusWindow'>
-                    <MapBoxes ref={childRef}  ></MapBoxes>
+                    <MapBoxes ref={childRef} ></MapBoxes>
 
 
                 </div>
@@ -49,6 +50,7 @@ const EnterWindow = () => {
             </div>
         </div>
     );
+
 };
 
-export default EnterWindow;
+export default StartWindow;
