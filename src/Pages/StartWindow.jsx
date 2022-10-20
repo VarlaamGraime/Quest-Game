@@ -7,8 +7,8 @@ import { useRef } from 'react';
 
 
 
-const StartWindow = (props) => {
-    const ref = React.createRef();
+const StartWindow = () => {
+
     const childRef = useRef()
 
     return (
@@ -30,13 +30,11 @@ const StartWindow = (props) => {
                     <Link to="/start" className='btnPick'
                         onClick={() => { childRef.current.firstEnemyMove() }}
                     >Начать</Link>
-
-
                     <button className='btnPick'
                         onClick={() => {
                             childRef.current.firstEnemyMove()
                         }}
-                    >  {props.children}Тест</button>
+                    >Тест</button>
 
 
                 </div>
