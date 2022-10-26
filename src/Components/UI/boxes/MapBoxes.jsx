@@ -25,6 +25,16 @@ const MapBoxes = (props, ref) => {
 
 
 
+    console.log("__________________")
+    console.log(posPlayerX, posPlayerY, "позиция игрока")
+    console.log(posEnemyX, posEnemyY, "позиция 1 врага")
+    console.log(posEnemyXSecond, posEnemyYSecond, "позиция 2 врага")
+    console.log(posEnemyXThird, posEnemyYThird, "позиция 3 врага")
+    console.log("__________________")
+
+
+
+
     function upMove() {
         if (posPlayerX === 0 && posPlayerY === 1) {
             setPlayerX(1);

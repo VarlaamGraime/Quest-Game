@@ -28,8 +28,12 @@ const StartWindow = () => {
 
                 <div className='choiceWindow'>
                     <Link to="/start" className='btnPick'
-                        onClick={() => { childRef.current.firstEnemyMove() }}
+                        onClick={() => {
+                            childRef.current.firstEnemyMove()
+                        }}
                     >Начать</Link>
+
+
                     <button className='btnPick'
                         onClick={() => {
                             childRef.current.firstEnemyMove()
