@@ -9,9 +9,80 @@ const EnterWindow = (props) => {
 
     const childRef = useRef()
 
+    /* Скрытие кнопки вверх*/
     function ButtonUpVisible(props) {
+        return <button className='btnPick' onClick={() => {
+            childRef.current.upMove()
+        }} >Вверх по карте</button>
+    }
+
+    function ButtonUpUnVisible(props) {
+        return <h1></h1>;
+    }
+
+    function RenderButtonUp() {
+
+        if (props.posPlayerX == 1 && props.posPlayerY == 0) {
+            return <ButtonUpUnVisible />;
+        }
+        return <ButtonUpVisible />;
+    }
+
+    /* Рендер кнопки вниз*/
+    function RenderButtonDown() {
+        return <button className='btnPick' onClick={() => {
+            childRef.current.downMove()
+        }} >Вниз по карте</button>
+    }
+
+    /* Скрытие кнопки влево*/
+    function ButtonLeftVisible(props) {
+        return <button className='btnPick' onClick={() => {
+            childRef.current.leftMove()
+        }} >Влево по карте</button>
+    }
+
+    function ButtonLeftUnVisible(props) {
+        return <h1></h1>;
+    }
+
+    function RenderButtonLeft() {
+
+        if (props.posPlayerX == 0 && props.posPlayerY == 1 ||
+            props.posPlayerX == 0 && props.posPlayerY == 2 ||
+            props.posPlayerX == 0 && props.posPlayerY == 3) {
+            return <ButtonLeftUnVisible />;
+        }
+        return <ButtonLeftVisible />;
+    }
+
+
+    /* Скрытие кнопки вправо*/
+    function ButtonRightVisible(props) {
+        return <button className='btnPick' onClick={() => {
+            childRef.current.rightMove()
+        }} >Вправо по карте</button>
 
     }
+
+    function ButtonRightUnVisible(props) {
+        return <h1></h1>;
+    }
+
+    function RenderButtonRight() {
+        console.log(props.posPlayerX, props.posPlayerY)
+
+        if (props.posPlayerX == 2 && props.posPlayerY == 1 ||
+            props.posPlayerX == 2 && props.posPlayerY == 2 ||
+            props.posPlayerX == 2 && props.posPlayerY == 3) {
+            return <ButtonRightUnVisible />;
+        }
+
+        return <ButtonRightVisible />;
+    }
+
+
+
 
 
     return (
@@ -30,28 +101,10 @@ const EnterWindow = (props) => {
             <div className='flexBox'>
 
                 <div className='choiceWindow'>
-
-
-
-
-
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.upMove()
-                    }} >Вверх по карте</button>
-
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.downMove()
-                    }} >Вниз по карте</button>
-
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.leftMove()
-                    }} >Влево по карте</button>
-
-                    <button className='btnPick' onClick={() => {
-                        childRef.current.rightMove()
-                    }} >Вправо по карте</button>
-
-
+                    <RenderButtonUp />
+                    <RenderButtonDown />
+                    <RenderButtonLeft />
+                    <RenderButtonRight />
                 </div>
 
                 <div className='statusWindow'>

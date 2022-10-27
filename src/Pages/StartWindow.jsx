@@ -7,7 +7,7 @@ import { useRef } from 'react';
 
 
 
-const StartWindow = () => {
+const StartWindow = (props) => {
 
     const childRef = useRef()
 
@@ -34,17 +34,34 @@ const StartWindow = () => {
                     >Начать</Link>
 
 
-                    <button className='btnPick'
-                        onClick={() => {
-                            childRef.current.firstEnemyMove()
-                        }}
-                    >Тест</button>
 
 
                 </div>
 
                 <div className='statusWindow'>
-                    <MapBoxes ref={childRef} ></MapBoxes>
+                    <MapBoxes ref={childRef}
+                        posPlayerX={props.posPlayerX}
+                        posPlayerY={props.posPlayerY}
+
+                        posEnemyX={props.posEnemyX}
+                        posEnemyY={props.posEnemyY}
+
+                        posEnemyXSecond={props.posEnemyXSecond}
+                        posEnemyYSecond={props.posEnemyYSecond}
+
+                        posEnemyXThird={props.posEnemyXThird}
+                        posEnemyYThird={props.posEnemyYThird}
+
+
+                        setPlayerX={props.setPlayerX}
+                        setPlayerY={props.setPlayerY}
+                        setEnemyX={props.setEnemyX}
+                        setEnemyY={props.setEnemyY}
+                        setEnemyXSecond={props.setEnemyXSecond}
+                        setEnemyYSecond={props.setEnemyYSecond}
+                        setEnemyXThird={props.setEnemyXThird}
+                        setEnemyYThird={props.setEnemyYThird}
+                    ></MapBoxes>
 
 
                 </div>
