@@ -5,9 +5,13 @@ import { useRef } from 'react';
 
 
 
-const EnterWindow = () => {
+const EnterWindow = (props) => {
 
     const childRef = useRef()
+
+    function ButtonUpVisible(props) {
+
+    }
 
 
     return (
@@ -26,22 +30,55 @@ const EnterWindow = () => {
             <div className='flexBox'>
 
                 <div className='choiceWindow'>
+
+
+
+
+
                     <button className='btnPick' onClick={() => {
                         childRef.current.upMove()
                     }} >Вверх по карте</button>
+
                     <button className='btnPick' onClick={() => {
                         childRef.current.downMove()
                     }} >Вниз по карте</button>
+
                     <button className='btnPick' onClick={() => {
                         childRef.current.leftMove()
                     }} >Влево по карте</button>
+
                     <button className='btnPick' onClick={() => {
                         childRef.current.rightMove()
                     }} >Вправо по карте</button>
+
+
                 </div>
 
                 <div className='statusWindow'>
-                    <MapBoxes ref={childRef}  ></MapBoxes>
+                    <MapBoxes ref={childRef}
+                        posPlayerX={props.posPlayerX}
+                        posPlayerY={props.posPlayerY}
+
+                        posEnemyX={props.posEnemyX}
+                        posEnemyY={props.posEnemyY}
+
+                        posEnemyXSecond={props.posEnemyXSecond}
+                        posEnemyYSecond={props.posEnemyYSecond}
+
+                        posEnemyXThird={props.posEnemyXThird}
+                        posEnemyYThird={props.posEnemyYThird}
+
+
+                        setPlayerX={props.setPlayerX}
+                        setPlayerY={props.setPlayerY}
+                        setEnemyX={props.setEnemyX}
+                        setEnemyY={props.setEnemyY}
+                        setEnemyXSecond={props.setEnemyXSecond}
+                        setEnemyYSecond={props.setEnemyYSecond}
+                        setEnemyXThird={props.setEnemyXThird}
+                        setEnemyYThird={props.setEnemyYThird}
+
+                    ></MapBoxes>
 
 
                 </div>
