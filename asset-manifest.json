@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Quest-Game/static/css/main.b93b8ae5.css",
+    "main.js": "/Quest-Game/static/js/main.c7247366.js",
+    "index.html": "/Quest-Game/index.html",
+    "main.b93b8ae5.css.map": "/Quest-Game/static/css/main.b93b8ae5.css.map",
+    "main.c7247366.js.map": "/Quest-Game/static/js/main.c7247366.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b93b8ae5.css",
+    "static/js/main.c7247366.js"
+  ]
+}
