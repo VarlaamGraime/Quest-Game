@@ -1,183 +1,286 @@
-import React, { useRef, useImperativeHandle, forwardRef } from 'react'
+import React, { useEffect, useState, useRef, useImperativeHandle, forwardRef } from 'react'
 import classes from './MapBoxes.module.css';
-import { useState } from 'react';
 
 const MapBoxes = (props, ref) => {
 
+    const [randomIdEnemy, setRandomIdEnemy] = useState(0);
+
+
+
+
+
+
     useImperativeHandle(ref, () => ({
+
         upMove: () => { upMove() },
         downMove: () => { downMove() },
         rightMove: () => { rightMove() },
         leftMove: () => { leftMove() },
-        firstEnemyMove: () => { enemyMove(1, 1) }
+        firstEnemyMove: () => { enemyMove(1, 1) },
+        backlightStart: () => { },
+
+
+        RandomEnemyMove: () => { enemyMove(1, Math.round(Math.random() * 2)); },
+        // alternate movement
+        centralMoveFirst: () => { enemyMove(1, 0) },
+        centralMoveSecond: () => { enemyMove(1, 1) },
+        centralMoveThird: () => { enemyMove(1, 2) }
+
 
     }))
 
 
 
 
+    let posPlayerX = props.posPlayerX;
+    let posPlayerY = props.posPlayerY;
+    let posEnemyX = props.posEnemyX;
+    let posEnemyY = props.posEnemyY;
+    let posEnemyXSecond = props.posEnemyXSecond;
+    let posEnemyYSecond = props.posEnemyYSecond;
+    let posEnemyXThird = props.posEnemyXThird;
+    let posEnemyYThird = props.posEnemyYThird;
 
 
-    console.log("__________________")
-    console.log(props.posPlayerX, props.posPlayerY, "позиция игрока")
-    console.log(props.posEnemyX, props.posEnemyY, "позиция 1 врага")
-    console.log(props.posEnemyXSecond, props.posEnemyYSecond, "позиция 2 врага")
-    console.log(props.posEnemyXThird, props.posEnemyYThird, "позиция 3 врага")
-    console.log("__________________")
+
+
+
 
 
 
 
     function upMove() {
+
+
         if (props.posPlayerX === 0 && props.posPlayerY === 1) {
             props.setPlayerX(1);
+            posPlayerX = 1;
             props.setPlayerY(0);
+            posPlayerY = 0;
         }
         else if (props.posPlayerX === 2 && props.posPlayerY === 1) {
             props.setPlayerX(1)
+            posPlayerX = 1;
             props.setPlayerY(0)
+            posPlayerY = 0;
         }
         else {
             props.setPlayerY(props.posPlayerY - 1)
+            posPlayerY = props.posPlayerY - 1;
         }
+
+
+
+
+
+        if (
+            posPlayerX == posEnemyX && posPlayerY == posEnemyY + 1
+            ||
+            posPlayerX == posEnemyXSecond && posPlayerY == posEnemyYSecond + 1
+            ||
+            posPlayerX == posEnemyXThird && posPlayerY == posEnemyYThird + 1
+        ) {
+            console.log('враг рядом (сверху) ')
+        }
+
+        if (
+            posPlayerX == posEnemyX && posPlayerY == posEnemyY - 1
+            ||
+            posPlayerX == posEnemyXSecond && posPlayerY == posEnemyYSecond - 1
+            ||
+            posPlayerX == posEnemyXThird && posPlayerY == posEnemyYThird - 1
+
+        ) {
+            console.log('враг рядом (снизу) ')
+        }
+
+        if (
+            posPlayerX == posEnemyX - 1 && posPlayerY == posEnemyY
+            ||
+            posPlayerX == posEnemyXSecond - 1 && posPlayerY == posEnemyYSecond
+            ||
+            posPlayerX == posEnemyXThird - 1 && posPlayerY == posEnemyYThird
+
+        ) {
+            console.log('враг рядом (справа) ')
+        }
+
+        if (
+            posPlayerX == posEnemyX + 1 && posPlayerY == posEnemyY
+            ||
+            posPlayerX == posEnemyXSecond + 1 && posPlayerY == posEnemyYSecond
+            ||
+            posPlayerX == posEnemyXThird + 1 && posPlayerY == posEnemyYThird
+        ) {
+            console.log('враг рядом (слева) ')
+        }
+
     }
+
+
     function downMove() {
         if (props.posPlayerX === 0 && props.posPlayerY === 3) {
             props.setPlayerX(1);
+            posPlayerX = 1;
             props.setPlayerY(4);
+            posPlayerY = 4
         }
         else if (props.posPlayerX === 2 && props.posPlayerY === 3) {
             props.setPlayerX(1)
+            posPlayerX = 1
             props.setPlayerY(4)
+            posPlayerY(4)
         }
         else {
             props.setPlayerY(props.posPlayerY + 1)
-
+            posPlayerY = props.posPlayerY + 1;
         }
+
+
+
+
     }
+
+
     function leftMove() {
         if (props.posPlayerX === 1 && props.posPlayerY === 0) {
             props.setPlayerX(0);
+            posPlayerX = 0;
             props.setPlayerY(1);
+            posPlayerY = 1;
         }
 
         else {
             props.setPlayerX(props.posPlayerX - 1)
+            posPlayerX = props.posPlayerX - 1;
+
         }
+
+
+
+
     }
+
+
     function rightMove() {
 
         if (props.posPlayerX === 1 && props.posPlayerY === 0) {
             props.setPlayerX(2);
+            posPlayerX = 2;
             props.setPlayerY(1);
+            posPlayerY = 0;
         }
 
         else {
             props.setPlayerX(props.posPlayerX + 1)
+            posPlayerX = props.posPlayerX + 1;
+
+        }
+
+
+
+    }
+
+    function changeEnemyPosition(enemyX, enemyY, setEnemyX, setEnemyY) {
+        if (enemyX === 0 && enemyY === 1) {
+            setEnemyX(1);
+            enemyX = 2;
+            setEnemyY(0);
+            enemyY = 0;
+        }
+        else if (enemyX === 2 && enemyY === 1) {
+            setEnemyX(1);
+            enemyX = 1;
+            setEnemyY(0);
+            enemyY = 0;
+
+        }
+        else {
+            setEnemyY(enemyY - 1);
+            enemyY = props.enemyY - 1;
+
 
         }
     }
 
-    function enemyMove(route, numberEnemy) {
+
+    function enemyMove(route, enemyID) {
+
+
+
+
         if (route === 1) {
-            if (numberEnemy === 1) {
-                if (props.posEnemyXSecond === 0 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1);
-                    props.setEnemyYSecond(0);
-
-                }
-                else if (props.posEnemyXSecond === 2 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1)
-                    props.setEnemyYSecond(0)
-                }
-                else {
-                    props.setEnemyYSecond(props.posEnemyYSecond - 1)
-
-                }
-            }
-            else if (numberEnemy === 2) {
-                if (props.posEnemyX === 0 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    props.setEnemyY(0);
-
-                }
-                else if (props.posEnemyX === 2 && props.posEnemyY === 1) {
-                    props.setEnemyX(1)
-                    props.setEnemyY(0)
-                }
-                else {
-                    props.setEnemyY(props.posEnemyY - 1)
-
-                }
-            }
-            else {
-
-                if (props.posEnemyXThird === 0 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1);
-                    props.setEnemyYThird(0);
-
-                }
-                else if (props.posEnemyXThird === 2 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1)
-                    props.setEnemyYThird(0)
-                }
-                else {
-                    props.setEnemyYThird(props.posEnemyYThird - 1)
-
-                }
-
-            }
+            if (enemyID === 1)
+                changeEnemyPosition(props.posEnemyXSecond, props.posEnemyYSecond, props.setEnemyXSecond, props.setEnemyYSecond);
+            else if (enemyID === 2)
+                changeEnemyPosition(props.posEnemyX, props.posEnemyY, props.setEnemyX, props.setEnemyY);
+            else
+                changeEnemyPosition(props.posEnemyXThird, props.posEnemyYThird, props.setEnemyXThird, props.setEnemyYThird);
 
         }
 
 
-
-
         else if (route == 2) {
-            if (numberEnemy === 1) {
+            if (enemyID === 1) {
                 if (props.posEnemyXSecond === 0 && props.posEnemyYSecond === 1) {
                     props.setEnemyXSecond(1);
+                    posEnemyXSecond = 1
                     props.setEnemyYSecond(0);
-
+                    posEnemyYSecond = 0
                 }
                 else if (props.posEnemyXSecond === 2 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1)
-                    props.setEnemyYSecond(0)
+                    props.setEnemyXSecond(1);
+                    posEnemyXSecond = 1;
+                    props.setEnemyYSecond(0);
+                    posEnemyYSecond = 0;
                 }
                 else {
-                    props.setEnemyYSecond(props.posEnemyYSecond + 1)
-
+                    props.setEnemyXSecond(props.posEnemyXSecond - 1)
+                    posEnemyXSecond = props.posEnemyXSecond - 1;
                 }
             }
-            else if (numberEnemy === 2) {
-                if (props.posEnemyXSecond === 0 && props.posEnemyY === 1) {
+            else if (enemyID === 2) {
+                if (props.posEnemyX === 0 && props.posEnemyY === 1) {
                     props.setEnemyX(1);
+                    posEnemyX = 0;
                     props.setEnemyY(0);
+                    posEnemyY = 0;
 
                 }
-                else if (props.posEnemyXSecond === 2 && props.posEnemyY === 1) {
-                    props.setEnemyX(1)
-                    props.setEnemyY(0)
+                else if (props.posEnemyX === 2 && props.posEnemyY === 1) {
+                    props.setEnemyX(1);
+                    posEnemyX = 1;
+                    props.setEnemyY(0);
+                    posEnemyY = 0;
                 }
                 else {
-                    props.setEnemyY(props.posEnemyY + 1)
+                    props.setEnemyX(props.posEnemyX - 1)
+                    posEnemyX = props.posEnemyX - 1;
+
                 }
 
             }
-
             else {
 
                 if (props.posEnemyXThird === 0 && props.posEnemyYThird === 1) {
                     props.setEnemyXThird(1);
+                    posEnemyXThird = 1;
                     props.setEnemyYThird(0);
+                    posEnemyYThird = 0;
 
                 }
                 else if (props.posEnemyXThird === 2 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1)
+                    props.setEnemyXThird(1);
+                    posEnemyXThird = 2;
                     props.setEnemyYThird(0)
+                    posEnemyYThird = 0;
                 }
                 else {
-                    props.setEnemyYThird(props.posEnemyYThird + 1)
+                    props.setEnemyXThird(props.posEnemyXThird - 1)
+                    posEnemyXThird = props.posEnemyXThird - 1;
+
+
+
 
                 }
 
@@ -187,86 +290,107 @@ const MapBoxes = (props, ref) => {
 
 
         else if (route == 3) {
-            if (numberEnemy === 1) {
+            if (enemyID === 1) {
                 if (props.posEnemyXSecond === 0 && props.posEnemyYSecond === 1) {
                     props.setEnemyXSecond(1);
+                    posEnemyXSecond = 1;
                     props.setEnemyYSecond(0);
-
+                    posEnemyYSecond = 0;
                 }
                 else if (props.posEnemyXSecond === 2 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1)
-                    props.setEnemyYSecond(0)
+                    props.setEnemyXSecond(1);
+                    posEnemyXSecond = 1;
+                    props.setEnemyYSecond(0);
+                    posEnemyYSecond = 1
                 }
                 else {
                     props.setEnemyXSecond(props.posEnemyXSecond + 1)
-                }
-            }
-            else if (numberEnemy === 2) {
-                if (props.posEnemyXSecond === 0 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    props.setEnemyY(0);
+                    posEnemyXSecond = props.posEnemyXSecond + 1;
 
                 }
-                else if (props.posEnemyXSecond === 2 && props.posEnemyY === 1) {
-                    props.setEnemyX(1)
-                    props.setEnemyY(0)
+            }
+            else if (enemyID === 2) {
+                if (props.posEnemyX === 0 && props.posEnemyY === 1) {
+                    props.setEnemyX(1);
+                    posEnemyX = 1;
+                    props.setEnemyY(0);
+                    posEnemyY = 1;
+
+                }
+                else if (props.posEnemyX === 2 && props.posEnemyY === 1) {
+                    props.setEnemyX(1);
+                    posEnemyX = 1;
+                    props.setEnemyY(0);
+                    posEnemyY = 0;
                 }
                 else {
                     props.setEnemyX(props.posEnemyX + 1)
+                    posEnemyX = props.posEnemyX + 1;
+
                 }
 
             }
-
             else {
 
                 if (props.posEnemyXThird === 0 && props.posEnemyYThird === 1) {
                     props.setEnemyXThird(1);
+                    posEnemyXThird = 1;
                     props.setEnemyYThird(0);
-
+                    posEnemyYThird = 0;
                 }
                 else if (props.posEnemyXThird === 2 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1)
-                    props.setEnemyYThird(0)
+                    props.setEnemyXThird(1);
+                    posEnemyXThird = 1;
+                    props.setEnemyYThird(0);
+                    posEnemyYThird = 0;
                 }
                 else {
                     props.setEnemyXThird(props.posEnemyXThird + 1)
+                    posEnemyXThird = props.posEnemyXThird + 1;
 
                 }
 
             }
 
         }
-
-
-
         else {
-            if (numberEnemy === 1) {
+            if (enemyID === 1) {
                 if (props.posEnemyXSecond === 0 && props.posEnemyYSecond === 1) {
                     props.setEnemyXSecond(1);
+                    posEnemyXSecond = 1;
                     props.setEnemyYSecond(0);
-
+                    posEnemyYSecond = 0;
                 }
                 else if (props.posEnemyXSecond === 2 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1)
-                    props.setEnemyYSecond(0)
+                    props.setEnemyXSecond(1);
+                    posEnemyXSecond = 1;
+                    props.setEnemyYSecond(0);
+                    posEnemyYSecond = 0;
                 }
                 else {
                     props.setEnemyXSecond(props.posEnemyXSecond - 1)
+                    posEnemyXSecond = props.posEnemyXSecond - 1;
+
 
                 }
             }
-            else if (numberEnemy === 2) {
-                if (props.posEnemyXSecond === 0 && props.posEnemyY === 1) {
+            else if (enemyID === 2) {
+                if (props.posEnemyX === 0 && props.posEnemyY === 1) {
                     props.setEnemyX(1);
+                    posEnemyX = 1;
                     props.setEnemyY(0);
-
+                    posEnemyY = 0;
                 }
-                else if (props.posEnemyXSecond === 2 && props.posEnemyY === 1) {
-                    props.setEnemyX(1)
-                    props.setEnemyY(0)
+                else if (props.posEnemyX === 2 && props.posEnemyY === 1) {
+                    props.setEnemyX(1);
+                    posEnemyX = 1;
+                    props.setEnemyY(0);
+                    posEnemyY = 0;
                 }
                 else {
                     props.setEnemyX(props.posEnemyX - 1)
+                    posEnemyX = props.posEnemyX - 1;
+
                 }
 
             }
@@ -275,15 +399,21 @@ const MapBoxes = (props, ref) => {
 
                 if (props.posEnemyXThird === 0 && props.posEnemyYThird === 1) {
                     props.setEnemyXThird(1);
+                    posEnemyXThird = 1;
                     props.setEnemyYThird(0);
+                    posEnemyYThird = 0;
 
                 }
                 else if (props.posEnemyXThird === 2 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1)
-                    props.setEnemyYThird(0)
+                    props.setEnemyXThird(1);
+                    posEnemyXThird = 1;
+                    props.setEnemyYThird(0);
+                    posEnemyYThird = 0;
                 }
                 else {
                     props.setEnemyXThird(props.posEnemyXThird - 1)
+                    posEnemyXThird = props.posEnemyXThird - 1;
+
 
                 }
 
@@ -304,6 +434,7 @@ const MapBoxes = (props, ref) => {
         if (props.posPlayerX === positX && props.posPlayerY === positY) {
             return <span>X</span>;
         }
+
         return <h1> </h1>;
     }
 
@@ -325,8 +456,12 @@ const MapBoxes = (props, ref) => {
     }
 
 
+
+
+
     function makeBox(x, y, boxType) {
         let text = '';
+
 
         return <div className={boxType}>
             <Player
@@ -362,10 +497,40 @@ const MapBoxes = (props, ref) => {
     }
 
 
+
+
+
+
+
+
+
+
+    // function Backlight(props) {
+    //     return (makeBox(1, 3, classes.boxCellRed));
+    // }
+    // function Backlight2(props) {
+    //     return (makeBox(1, 3, classes.boxCell));
+    // }
+
+    // function RenderBacklight() {
+    //     if (normalBlock) {
+    //         return <Backlight />;
+    //     }
+    //     return <Backlight2 />;
+    // }
+
+
+    // const [normalBlock, setNormalBlock] = useState(true);
+
+    // const backlightStart = () => {
+    //     setNormalBlock(false);
+    // }
+
+
     return (
         <div>
             {makeBox(1, 0, classes.box, 1)}
-            <div div className={classes.flexBoxMap} >
+            <div className={classes.flexBoxMap} >
                 {makeBox(0, 1, classes.boxCell)}
                 {makeBox(1, 1, classes.boxCell)}
                 {makeBox(2, 1, classes.boxCell)}
@@ -390,23 +555,7 @@ const MapBoxes = (props, ref) => {
             </div>
             {makeBox(1, 4, classes.box)}
 
-
-            {/* <button onClick={() => enemyMove(1, 2)}>up1</button>
-            <button onClick={() => enemyMove(1, 1)}>up2</button>
-            <button onClick={() => enemyMove(1, 3)}>up3</button>
-
-            <button onClick={() => enemyMove(2, 2)}>dw1</button>
-            <button onClick={() => enemyMove(2, 1)}>dw2</button>
-            <button onClick={() => enemyMove(2, 3)}>dw3</button>
-
-            <button onClick={() => enemyMove(3, 2)}>rt1</button>
-            <button onClick={() => enemyMove(3, 1)}>rt2</button>
-            <button onClick={() => enemyMove(3, 3)}>rt3</button>
-
-            <button onClick={() => enemyMove(4, 2)}>lt1</button>
-            <button onClick={() => enemyMove(4, 1)}>lt2</button>
-            <button onClick={() => enemyMove(4, 3)}>lt3</button> */}
-
+            {/* <button onClick={backlightStart} >test</button>  тест со сменой цвета при движении*/}
 
 
         </div>

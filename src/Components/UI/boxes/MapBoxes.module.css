@@ -13,6 +13,24 @@
     font-weight: bold;
 }
 
+.boxGreen {
+    display: inline-flex;
+
+    width: 3em;
+    height: 3em;
+    border: 1px solid rgb(49, 122, 7);
+    margin-left: 10em;
+    transform: translate(-50%, 00%);
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 1em;
+    justify-content: center;
+    font-weight: bold;
+
+
+
+}
+
 .boxCell {
     display: inline-flex;
     width: 3em;
@@ -27,6 +45,35 @@
     justify-content: center;
     font-weight: bold;
 }
+
+.boxCellRed {
+    display: inline-flex;
+    width: 3em;
+    height: 3em;
+    border: 1px solid rgb(224, 6, 6);
+    margin-left: 1em;
+    transform: translate(-50%, 00%);
+    margin-top: 10px;
+    float: left;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 1em;
+    justify-content: center;
+    font-weight: bold;
+
+    animation: blink 1.5s linear infinite;
+
+}
+
+
+@keyframes blink {
+    0% {
+        border: 1px dashed #d0ff00;
+    }
+}
+
+
+
+
 
 .boxCellEmp {
     display: inline-flex;

@@ -11,6 +11,8 @@ const StartWindow = (props) => {
 
     const childRef = useRef()
 
+
+
     return (
         <div>
             <div className='flexBox'>
@@ -21,6 +23,7 @@ const StartWindow = (props) => {
 
                 <div className='pictureWindow'>
                     Duis commodo lacus eu nisi aliquam elementum in a sapien. Nunc tincidunt varius lorem, eu lacinia lacus vulputate eget. Aenean eu ligula id est lobortis facilisis sed sit amet ante.
+
                 </div>
 
             </div>
@@ -29,7 +32,10 @@ const StartWindow = (props) => {
                 <div className='choiceWindow'>
                     <Link to="/start" className='btnPick'
                         onClick={() => {
-                            childRef.current.firstEnemyMove()
+                            childRef.current.firstEnemyMove();
+                            childRef.current.backlightStart();
+
+
                         }}
                     >Начать</Link>
 
