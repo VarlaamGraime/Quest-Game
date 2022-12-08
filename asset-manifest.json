@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/varlaamgraime.github.io/Quest-Game/static/css/main.3163ccc2.css",
-    "main.js": "/varlaamgraime.github.io/Quest-Game/static/js/main.0808b944.js",
+    "main.js": "/varlaamgraime.github.io/Quest-Game/static/js/main.3fcde35c.js",
     "index.html": "/varlaamgraime.github.io/Quest-Game/index.html",
     "main.3163ccc2.css.map": "/varlaamgraime.github.io/Quest-Game/static/css/main.3163ccc2.css.map",
-    "main.0808b944.js.map": "/varlaamgraime.github.io/Quest-Game/static/js/main.0808b944.js.map"
+    "main.3fcde35c.js.map": "/varlaamgraime.github.io/Quest-Game/static/js/main.3fcde35c.js.map"
   },
   "entrypoints": [
     "static/css/main.3163ccc2.css",
-    "static/js/main.0808b944.js"
+    "static/js/main.3fcde35c.js"
   ]
 }
