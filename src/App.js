@@ -21,7 +21,7 @@ function App() {
     <div>
 
       <Routes>
-        <Route path='' element=<StartWindow
+        <Route path='/Quest-Game' element=<StartWindow
           posPlayerX={posPlayerX}
           posPlayerY={posPlayerY}
           posEnemyX={posEnemyX}
@@ -41,7 +41,7 @@ function App() {
           setEnemyYThird={setEnemyYThird}
 
         /> />
-        <Route path='start' element=<EnterWindow
+        <Route path='/Quest-Game/start' element=<EnterWindow
           posPlayerX={posPlayerX}
           posPlayerY={posPlayerY}
           posEnemyX={posEnemyX}
