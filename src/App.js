@@ -41,7 +41,7 @@ function App() {
           setEnemyYThird={setEnemyYThird}
 
         /> />
-        <Route path='start' element=<EnterWindow
+        <Route path='/Quest-Game/start' element=<EnterWindow
           posPlayerX={posPlayerX}
           posPlayerY={posPlayerY}
           posEnemyX={posEnemyX}
