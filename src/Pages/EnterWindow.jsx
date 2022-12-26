@@ -758,8 +758,6 @@ const EnterWindow = (props) => {
 
 
 
-    function logicMove() {
-    }
 
 
 
@@ -775,7 +773,6 @@ const EnterWindow = (props) => {
         return <button className='btnPick' onClick={() => {
             // childRef.current.RandomEnemyMove()
             childRef.current.upMove();
-            logicMove();
             nextStep();
 
 
@@ -796,7 +793,6 @@ const EnterWindow = (props) => {
         return <button className='btnPick' onClick={() => {
             // childRef.current.RandomEnemyMove()
             childRef.current.downMove();
-            logicMove();
             nextStep();
 
         }} >Вниз по карте</button>
@@ -817,7 +813,6 @@ const EnterWindow = (props) => {
         return <button className='btnPick' onClick={() => {
             // childRef.current.RandomEnemyMove()
             childRef.current.leftMove();
-            logicMove();
             nextStep();
 
 
@@ -840,7 +835,7 @@ const EnterWindow = (props) => {
         return <button className='btnPick' onClick={() => {
             // childRef.current.RandomEnemyMove()
             childRef.current.rightMove();
-            logicMove();
+
             nextStep();
 
 

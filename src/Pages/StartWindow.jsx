@@ -34,8 +34,6 @@ const StartWindow = (props) => {
                         onClick={() => {
                             childRef.current.firstEnemyMove();
                             childRef.current.backlightStart();
-
-
                         }}
                     >Начать</Link>
 

@@ -17,9 +17,6 @@ const MapBoxes = (props, ref) => {
         rightMove: () => { rightMove() },
         leftMove: () => { leftMove() },
         firstEnemyMove: () => { enemyMove(1, 1) },
-        backlightStart: () => { },
-
-
         RandomEnemyMove: () => { enemyMove(1, Math.round(Math.random() * 2)); },
         // alternate movement
         centralMoveFirst: () => { enemyMove(1, 0) },
@@ -30,8 +27,6 @@ const MapBoxes = (props, ref) => {
     }))
 
 
-
-
     let posPlayerX = props.posPlayerX;
     let posPlayerY = props.posPlayerY;
     let posEnemyX = props.posEnemyX;
@@ -40,14 +35,6 @@ const MapBoxes = (props, ref) => {
     let posEnemyYSecond = props.posEnemyYSecond;
     let posEnemyXThird = props.posEnemyXThird;
     let posEnemyYThird = props.posEnemyYThird;
-
-
-
-
-
-
-
-
 
     function upMove() {
 
@@ -68,9 +55,6 @@ const MapBoxes = (props, ref) => {
             props.setPlayerY(props.posPlayerY - 1)
             posPlayerY = props.posPlayerY - 1;
         }
-
-
-
 
 
         if (
@@ -198,15 +182,11 @@ const MapBoxes = (props, ref) => {
         else {
             setEnemyY(enemyY - 1);
             enemyY = props.enemyY - 1;
-
-
         }
     }
 
 
     function enemyMove(route, enemyID) {
-
-
 
 
         if (route === 1) {
@@ -502,29 +482,6 @@ const MapBoxes = (props, ref) => {
 
 
 
-
-
-
-    // function Backlight(props) {
-    //     return (makeBox(1, 3, classes.boxCellRed));
-    // }
-    // function Backlight2(props) {
-    //     return (makeBox(1, 3, classes.boxCell));
-    // }
-
-    // function RenderBacklight() {
-    //     if (normalBlock) {
-    //         return <Backlight />;
-    //     }
-    //     return <Backlight2 />;
-    // }
-
-
-    // const [normalBlock, setNormalBlock] = useState(true);
-
-    // const backlightStart = () => {
-    //     setNormalBlock(false);
-    // }
 
 
     return (
