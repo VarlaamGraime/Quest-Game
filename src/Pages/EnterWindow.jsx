@@ -13,13 +13,6 @@ const EnterWindow = (props) => {
     const [enemyOnTheRight, setEnemyOnTheRight] = useState(false);
     const [enemyAboveYou, setEnemyAboveYou] = useState(0);
 
-
-
-
-
-
-
-
     let posPlayerX = props.posPlayerX;
     let posPlayerY = props.posPlayerY;
     let posEnemyX = props.posEnemyX;
@@ -28,10 +21,6 @@ const EnterWindow = (props) => {
     let posEnemyYSecond = props.posEnemyYSecond;
     let posEnemyXThird = props.posEnemyXThird;
     let posEnemyYThird = props.posEnemyYThird;
-
-
-
-
 
     useEffect(() => {
 
@@ -734,26 +723,6 @@ const EnterWindow = (props) => {
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }, [counter, enemyAboveYou, enemyOnTheDown, enemyOnTheUp, enemyOnTheLeft, enemyOnTheRight, props.posPlayerX, props.posPlayerY, props.posEnemyX, props.posEnemyY, props.posEnemyXSecond, props.posEnemyYSecond, props.posEnemyXThird, props.posEnemyYThird]);
 
 
