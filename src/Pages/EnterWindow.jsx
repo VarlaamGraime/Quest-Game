@@ -774,8 +774,6 @@ const EnterWindow = (props) => {
             // childRef.current.RandomEnemyMove()
             childRef.current.upMove();
             nextStep();
-
-
         }} >Вверх по карте</button>
     }
     function RenderButtonUp() {
@@ -794,7 +792,6 @@ const EnterWindow = (props) => {
             // childRef.current.RandomEnemyMove()
             childRef.current.downMove();
             nextStep();
-
         }} >Вниз по карте</button>
     }
 
@@ -814,8 +811,6 @@ const EnterWindow = (props) => {
             // childRef.current.RandomEnemyMove()
             childRef.current.leftMove();
             nextStep();
-
-
         }} >Влево по карте</button>
     }
     function RenderButtonLeft() {
@@ -835,10 +830,7 @@ const EnterWindow = (props) => {
         return <button className='btnPick' onClick={() => {
             // childRef.current.RandomEnemyMove()
             childRef.current.rightMove();
-
             nextStep();
-
-
         }} >Вправо по карте</button>
 
     }

@@ -36,139 +36,60 @@ const MapBoxes = (props, ref) => {
     let posEnemyXThird = props.posEnemyXThird;
     let posEnemyYThird = props.posEnemyYThird;
 
-    function upMove() {
-
-
+    function moveDirectionVertical(x, y, axis, direct) {
         if (props.posPlayerX === 0 && props.posPlayerY === 1) {
-            props.setPlayerX(1);
-            posPlayerX = 1;
-            props.setPlayerY(0);
-            posPlayerY = 0;
+            props.setPlayerX(x);
+            posPlayerX = x;
+            props.setPlayerY(y);
+            posPlayerY = y;
         }
         else if (props.posPlayerX === 2 && props.posPlayerY === 1) {
-            props.setPlayerX(1)
-            posPlayerX = 1;
-            props.setPlayerY(0)
-            posPlayerY = 0;
+            props.setPlayerX(x)
+            posPlayerX = x;
+            props.setPlayerY(y)
+            posPlayerY = y;
         }
         else {
-            props.setPlayerY(props.posPlayerY - 1)
-            posPlayerY = props.posPlayerY - 1;
+            props.setPlayerY(axis + direct)
+            posPlayerY = axis + direct;
         }
-
-
-        if (
-            posPlayerX == posEnemyX && posPlayerY == posEnemyY + 1
-            ||
-            posPlayerX == posEnemyXSecond && posPlayerY == posEnemyYSecond + 1
-            ||
-            posPlayerX == posEnemyXThird && posPlayerY == posEnemyYThird + 1
-        ) {
-            console.log('враг рядом (сверху) ')
-        }
-
-        if (
-            posPlayerX == posEnemyX && posPlayerY == posEnemyY - 1
-            ||
-            posPlayerX == posEnemyXSecond && posPlayerY == posEnemyYSecond - 1
-            ||
-            posPlayerX == posEnemyXThird && posPlayerY == posEnemyYThird - 1
-
-        ) {
-            console.log('враг рядом (снизу) ')
-        }
-
-        if (
-            posPlayerX == posEnemyX - 1 && posPlayerY == posEnemyY
-            ||
-            posPlayerX == posEnemyXSecond - 1 && posPlayerY == posEnemyYSecond
-            ||
-            posPlayerX == posEnemyXThird - 1 && posPlayerY == posEnemyYThird
-
-        ) {
-            console.log('враг рядом (справа) ')
-        }
-
-        if (
-            posPlayerX == posEnemyX + 1 && posPlayerY == posEnemyY
-            ||
-            posPlayerX == posEnemyXSecond + 1 && posPlayerY == posEnemyYSecond
-            ||
-            posPlayerX == posEnemyXThird + 1 && posPlayerY == posEnemyYThird
-        ) {
-            console.log('враг рядом (слева) ')
-        }
-
     }
 
+    function upMove() {
+        moveDirectionVertical(1, 0, props.posPlayerY, -1)
+    }
 
     function downMove() {
-        if (props.posPlayerX === 0 && props.posPlayerY === 3) {
-            props.setPlayerX(1);
-            posPlayerX = 1;
-            props.setPlayerY(4);
-            posPlayerY = 4
-        }
-        else if (props.posPlayerX === 2 && props.posPlayerY === 3) {
-            props.setPlayerX(1)
-            posPlayerX = 1
-            props.setPlayerY(4)
-            posPlayerY(4)
-        }
-        else {
-            props.setPlayerY(props.posPlayerY + 1)
-            posPlayerY = props.posPlayerY + 1;
-        }
-
-
-
-
+        moveDirectionVertical(1, 4, props.posPlayerY, +1)
     }
 
+    function moveDirectionHorizon(x, y, axis, direct) {
+        if (props.posPlayerX === 1 && props.posPlayerY === 0) {
+            props.setPlayerX(x);
+            posPlayerX = x;
+            props.setPlayerY(y);
+            posPlayerY = y;
+        }
+
+        else {
+            props.setPlayerX(axis + direct)
+            posPlayerX = axis + direct;
+        }
+    }
 
     function leftMove() {
-        if (props.posPlayerX === 1 && props.posPlayerY === 0) {
-            props.setPlayerX(0);
-            posPlayerX = 0;
-            props.setPlayerY(1);
-            posPlayerY = 1;
-        }
-
-        else {
-            props.setPlayerX(props.posPlayerX - 1)
-            posPlayerX = props.posPlayerX - 1;
-
-        }
-
-
-
-
+        moveDirectionHorizon(0, 1, props.posPlayerX, -1)
     }
-
 
     function rightMove() {
-
-        if (props.posPlayerX === 1 && props.posPlayerY === 0) {
-            props.setPlayerX(2);
-            posPlayerX = 2;
-            props.setPlayerY(1);
-            posPlayerY = 0;
-        }
-
-        else {
-            props.setPlayerX(props.posPlayerX + 1)
-            posPlayerX = props.posPlayerX + 1;
-
-        }
-
-
-
+        moveDirectionHorizon(2, 1, props.posPlayerX, +1)
     }
 
-    function changeEnemyPosition(enemyX, enemyY, setEnemyX, setEnemyY) {
+
+    function changeEnemyPosition(enemyX, enemyY, setEnemyX, setEnemyY, direction, xOry) {
         if (enemyX === 0 && enemyY === 1) {
             setEnemyX(1);
-            enemyX = 2;
+            enemyX = 1;
             setEnemyY(0);
             enemyY = 0;
         }
@@ -180,8 +101,8 @@ const MapBoxes = (props, ref) => {
 
         }
         else {
-            setEnemyY(enemyY - 1);
-            enemyY = props.enemyY - 1;
+            setEnemyY(direction - 1);
+            direction = props.direction + xOry;
         }
     }
 
@@ -191,216 +112,46 @@ const MapBoxes = (props, ref) => {
 
         if (route === 1) {
             if (enemyID === 1)
-                changeEnemyPosition(props.posEnemyXSecond, props.posEnemyYSecond, props.setEnemyXSecond, props.setEnemyYSecond);
+                changeEnemyPosition(props.posEnemyXSecond, props.posEnemyYSecond, props.setEnemyXSecond, props.setEnemyYSecond, props.posEnemyYSecond, -1);
             else if (enemyID === 2)
-                changeEnemyPosition(props.posEnemyX, props.posEnemyY, props.setEnemyX, props.setEnemyY);
+                changeEnemyPosition(props.posEnemyX, props.posEnemyY, props.setEnemyX, props.setEnemyY, props.posEnemyY, -1);
             else
-                changeEnemyPosition(props.posEnemyXThird, props.posEnemyYThird, props.setEnemyXThird, props.setEnemyYThird);
-
+                changeEnemyPosition(props.posEnemyXThird, props.posEnemyYThird, props.setEnemyXThird, props.setEnemyYThird, props.posEnemyYThird, -1);
         }
 
 
+
         else if (route == 2) {
-            if (enemyID === 1) {
-                if (props.posEnemyXSecond === 0 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1);
-                    posEnemyXSecond = 1
-                    props.setEnemyYSecond(0);
-                    posEnemyYSecond = 0
-                }
-                else if (props.posEnemyXSecond === 2 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1);
-                    posEnemyXSecond = 1;
-                    props.setEnemyYSecond(0);
-                    posEnemyYSecond = 0;
-                }
-                else {
-                    props.setEnemyXSecond(props.posEnemyXSecond - 1)
-                    posEnemyXSecond = props.posEnemyXSecond - 1;
-                }
-            }
-            else if (enemyID === 2) {
-                if (props.posEnemyX === 0 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    posEnemyX = 0;
-                    props.setEnemyY(0);
-                    posEnemyY = 0;
-
-                }
-                else if (props.posEnemyX === 2 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    posEnemyX = 1;
-                    props.setEnemyY(0);
-                    posEnemyY = 0;
-                }
-                else {
-                    props.setEnemyX(props.posEnemyX - 1)
-                    posEnemyX = props.posEnemyX - 1;
-
-                }
-
-            }
-            else {
-
-                if (props.posEnemyXThird === 0 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1);
-                    posEnemyXThird = 1;
-                    props.setEnemyYThird(0);
-                    posEnemyYThird = 0;
-
-                }
-                else if (props.posEnemyXThird === 2 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1);
-                    posEnemyXThird = 2;
-                    props.setEnemyYThird(0)
-                    posEnemyYThird = 0;
-                }
-                else {
-                    props.setEnemyXThird(props.posEnemyXThird - 1)
-                    posEnemyXThird = props.posEnemyXThird - 1;
-
-
-
-
-                }
-
-            }
+            if (enemyID === 1)
+                changeEnemyPosition(props.posEnemyXSecond, props.posEnemyYSecond, props.setEnemyXSecond, props.setEnemyYSecond, props.posEnemyXSecond, -1);
+            else if (enemyID === 2)
+                changeEnemyPosition(props.posEnemyX, props.posEnemyY, props.setEnemyX, props.setEnemyY, props.posEnemyX, -1);
+            else
+                changeEnemyPosition(props.posEnemyXThird, props.posEnemyYThird, props.setEnemyXThird, props.setEnemyYThird, props.posEnemyXThird, -1);
         }
 
 
 
         else if (route == 3) {
-            if (enemyID === 1) {
-                if (props.posEnemyXSecond === 0 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1);
-                    posEnemyXSecond = 1;
-                    props.setEnemyYSecond(0);
-                    posEnemyYSecond = 0;
-                }
-                else if (props.posEnemyXSecond === 2 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1);
-                    posEnemyXSecond = 1;
-                    props.setEnemyYSecond(0);
-                    posEnemyYSecond = 1
-                }
-                else {
-                    props.setEnemyXSecond(props.posEnemyXSecond + 1)
-                    posEnemyXSecond = props.posEnemyXSecond + 1;
-
-                }
-            }
-            else if (enemyID === 2) {
-                if (props.posEnemyX === 0 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    posEnemyX = 1;
-                    props.setEnemyY(0);
-                    posEnemyY = 1;
-
-                }
-                else if (props.posEnemyX === 2 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    posEnemyX = 1;
-                    props.setEnemyY(0);
-                    posEnemyY = 0;
-                }
-                else {
-                    props.setEnemyX(props.posEnemyX + 1)
-                    posEnemyX = props.posEnemyX + 1;
-
-                }
-
-            }
-            else {
-
-                if (props.posEnemyXThird === 0 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1);
-                    posEnemyXThird = 1;
-                    props.setEnemyYThird(0);
-                    posEnemyYThird = 0;
-                }
-                else if (props.posEnemyXThird === 2 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1);
-                    posEnemyXThird = 1;
-                    props.setEnemyYThird(0);
-                    posEnemyYThird = 0;
-                }
-                else {
-                    props.setEnemyXThird(props.posEnemyXThird + 1)
-                    posEnemyXThird = props.posEnemyXThird + 1;
-
-                }
-
-            }
+            if (enemyID === 1)
+                changeEnemyPosition(props.posEnemyXSecond, props.posEnemyYSecond, props.setEnemyXSecond, props.setEnemyXSecond, props.posEnemyYSecond, +1);
+            else if (enemyID === 2)
+                changeEnemyPosition(props.posEnemyX, props.posEnemyY, props.setEnemyX, props.setEnemyY, props.posEnemyX, +1);
+            else
+                changeEnemyPosition(props.posEnemyXThird, props.posEnemyYThird, props.setEnemyXThird, props.setEnemyYThird, props.posEnemyXThird, +1);
 
         }
         else {
-            if (enemyID === 1) {
-                if (props.posEnemyXSecond === 0 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1);
-                    posEnemyXSecond = 1;
-                    props.setEnemyYSecond(0);
-                    posEnemyYSecond = 0;
-                }
-                else if (props.posEnemyXSecond === 2 && props.posEnemyYSecond === 1) {
-                    props.setEnemyXSecond(1);
-                    posEnemyXSecond = 1;
-                    props.setEnemyYSecond(0);
-                    posEnemyYSecond = 0;
-                }
-                else {
-                    props.setEnemyXSecond(props.posEnemyXSecond - 1)
-                    posEnemyXSecond = props.posEnemyXSecond - 1;
-
-
-                }
-            }
-            else if (enemyID === 2) {
-                if (props.posEnemyX === 0 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    posEnemyX = 1;
-                    props.setEnemyY(0);
-                    posEnemyY = 0;
-                }
-                else if (props.posEnemyX === 2 && props.posEnemyY === 1) {
-                    props.setEnemyX(1);
-                    posEnemyX = 1;
-                    props.setEnemyY(0);
-                    posEnemyY = 0;
-                }
-                else {
-                    props.setEnemyX(props.posEnemyX - 1)
-                    posEnemyX = props.posEnemyX - 1;
-
-                }
-
-            }
-
-            else {
-
-                if (props.posEnemyXThird === 0 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1);
-                    posEnemyXThird = 1;
-                    props.setEnemyYThird(0);
-                    posEnemyYThird = 0;
-
-                }
-                else if (props.posEnemyXThird === 2 && props.posEnemyYThird === 1) {
-                    props.setEnemyXThird(1);
-                    posEnemyXThird = 1;
-                    props.setEnemyYThird(0);
-                    posEnemyYThird = 0;
-                }
-                else {
-                    props.setEnemyXThird(props.posEnemyXThird - 1)
-                    posEnemyXThird = props.posEnemyXThird - 1;
-
-
-                }
-
-            }
+            if (enemyID === 1)
+                changeEnemyPosition(props.posEnemyXSecond, props.posEnemyYSecond, props.setEnemyXSecond, props.setEnemyYSecond, props.posEnemyXSecond, -1);
+            else if (enemyID === 2)
+                changeEnemyPosition(props.posEnemyX, props.posEnemyY, props.setEnemyX, props.setEnemyY, props.posEnemyX, -1);
+            else
+                changeEnemyPosition(props.posEnemyXThird, props.posEnemyYThird, props.setEnemyXThird, props.setEnemyYThird, props.posEnemyXThird, -1);
         }
-
     }
+
+
 
 
 

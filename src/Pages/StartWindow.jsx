@@ -30,10 +30,9 @@ const StartWindow = (props) => {
             <div className='flexBox'>
 
                 <div className='choiceWindow'>
-                    <Link to="/Quest-Game/start" className='btnPick'
+                    <Link to="/start" className='btnPick'
                         onClick={() => {
                             childRef.current.firstEnemyMove();
-                            childRef.current.backlightStart();
                         }}
                     >Начать</Link>
 
